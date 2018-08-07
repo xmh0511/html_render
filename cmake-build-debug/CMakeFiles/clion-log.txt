@@ -1,0 +1,4 @@
+/home/xmh/下载/clion-2018.1.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/xmh/下载/html_render
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/xmh/下载/html_render/cmake-build-debug
