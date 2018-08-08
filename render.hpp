@@ -40,7 +40,7 @@ namespace html_engine{
                  }else if((*it).is_boolean()){
                      list.push_back((*it).get<bool>());
                  }else if((*it).is_null()){
-                     list.push_back(nullptr);
+                     list.push_back("null");
                  }else if((*it).is_number_unsigned()){
                      list.push_back((*it).get<unsigned int>());
                  }
@@ -60,7 +60,7 @@ namespace html_engine{
         }else if(json.is_boolean()){
             ginner_obj[key] = json.get<bool>();
         }else if(json.is_null()){
-            ginner_obj[key] = nullptr;
+            ginner_obj[key] = "null";
         }else if(json.is_number_unsigned()){
             ginner_obj[key] = json.get<unsigned int>();
         }
