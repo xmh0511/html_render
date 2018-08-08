@@ -12,6 +12,7 @@
 #include <iterator>
 #include <functional>
 #include <memory>
+#include <iomanip>
 
 namespace ginger {
 
@@ -57,10 +58,21 @@ class object {
 
         template<class U, int = sizeof(std::declval<std::stringstream&>() << std::declval<U>())>
         std::string str_(int) const {
+            return str_help(obj);
+        }
+        template<typename Object>
+        std::string str_help(Object& t) const{
             std::stringstream ss;
-            ss << obj;
+            ss << t;
             return ss.str();
         }
+
+        std::string str_help(double t) const{
+            std::stringstream ss;
+            ss<<std::setprecision(64)<<t;
+            return ss.str();
+        }
+
         template<class U>
         std::string str_(...) const {
             throw "This value does not have operator<<().";

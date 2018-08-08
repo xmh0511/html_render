@@ -31,13 +31,19 @@ namespace html_engine{
             for(auto it = json.begin(); it != json.end(); ++it)
             {
                 if(!(*it).is_object()){
-                    if((*it).is_string()){
-                        list.push_back((*it).get<std::string>());
-                    }else if((*it).is_number_float()){
-                        list.push_back((*it).get<float>());
-                    }else if((*it).is_number_integer()){
-                        list.push_back((*it).get<int>());
-                    }
+                 if((*it).is_string()){
+                     list.push_back((*it).get<std::string>());
+                 }else if((*it).is_number_float()){
+                     list.push_back((*it).get<double>());
+                 }else if((*it).is_number_integer()){
+                     list.push_back((*it).get<int>());
+                 }else if((*it).is_boolean()){
+                     list.push_back((*it).get<bool>());
+                 }else if((*it).is_null()){
+                     list.push_back(nullptr);
+                 }else if((*it).is_number_unsigned()){
+                     list.push_back((*it).get<unsigned int>());
+                 }
                 }else{
                     std::map<std::string,ginger::object> object_tmp;
                     json_to_ginner_data(*it,object_tmp);
@@ -48,9 +54,15 @@ namespace html_engine{
         }else if(json.is_string()){
             ginner_obj[key] = json.get<std::string>();
         }else if(json.is_number_float()){
-            ginner_obj[key] = json.get<float>();
+            ginner_obj[key] = json.get<double>();
         } else if(json.is_number_integer()){
             ginner_obj[key] = json.get<int>();
+        }else if(json.is_boolean()){
+            ginner_obj[key] = json.get<bool>();
+        }else if(json.is_null()){
+            ginner_obj[key] = nullptr;
+        }else if(json.is_number_unsigned()){
+            ginner_obj[key] = json.get<unsigned int>();
         }
     }
     template<typename Object>
